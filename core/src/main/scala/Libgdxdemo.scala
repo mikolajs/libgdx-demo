@@ -1,5 +1,7 @@
 package pl.edu.osp
 
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter
 import com.badlogic.gdx.{Gdx, Game}
 import com.badlogic.gdx.graphics.g2d.{BitmapFont, SpriteBatch}
 import com.badlogic.gdx.graphics.{Texture, GL20, Color}
@@ -8,6 +10,7 @@ class Libgdxdemo extends Game {
   private var batch:SpriteBatch = null
   private var font:BitmapFont = null
   private var texture:Texture = null
+
   var posX = 200
   var posY = 350
   val napis =
@@ -21,10 +24,12 @@ class Libgdxdemo extends Game {
     """.stripMargin
   override def create(): Unit = {
     batch = new SpriteBatch()
-    font = new BitmapFont()
-    font.setColor(Color.CYAN)
-    font.getData.scale(4f)
     texture = new Texture(Gdx.files.internal("data/galaxy.jpg"))
+    val generator = new FreeTypeFontGenerator(Gdx.files.internal("data/Comic_Sans_MS_Bold.ttf"));
+    val parameter = new FreeTypeFontParameter()
+    parameter.size = 45;
+    font = generator.generateFont(parameter);
+    generator.dispose()
   }
 
   override def render():Unit = {
