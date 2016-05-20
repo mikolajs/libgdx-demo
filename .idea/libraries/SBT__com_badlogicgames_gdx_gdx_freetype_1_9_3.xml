@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="SBT: com.badlogicgames.gdx:gdx-freetype:1.9.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.badlogicgames.gdx/gdx-freetype/jars/gdx-freetype-1.9.3.jar!/"/>
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.badlogicgames.gdx/gdx-freetype/docs/gdx-freetype-1.9.3-javadoc.jar!/"/>
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.badlogicgames.gdx/gdx-freetype/srcs/gdx-freetype-1.9.3-sources.jar!/"/>
+    </SOURCES>
+  </library>
+</component>
