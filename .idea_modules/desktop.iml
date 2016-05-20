@@ -34,6 +34,7 @@
     <orderEntry type="library" name="SBT: org.scala-lang:scala-library:2.11.8" level="project" />
     <orderEntry type="library" name="SBT: com.badlogicgames.gdx:gdx:1.9.3" level="project" />
     <orderEntry type="library" name="SBT: com.badlogicgames.gdx:gdx-freetype:1.9.3" level="project" />
+    <orderEntry type="library" name="SBT: com.badlogicgames.gdx:gdx-freetype-platform:1.9.3" level="project" />
     <orderEntry type="library" name="SBT: com.badlogicgames.gdx:gdx-backend-lwjgl:1.9.3" level="project" />
     <orderEntry type="library" name="SBT: org.lwjgl.lwjgl:lwjgl:2.9.2" level="project" />
     <orderEntry type="library" name="SBT: org.lwjgl.lwjgl:lwjgl-platform:2.9.2" level="project" />

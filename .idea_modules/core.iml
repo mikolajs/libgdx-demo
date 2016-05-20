@@ -33,6 +33,7 @@
     <orderEntry type="library" name="SBT: org.scala-lang:scala-library:2.11.8" level="project" />
     <orderEntry type="library" name="SBT: com.badlogicgames.gdx:gdx:1.9.3" level="project" />
     <orderEntry type="library" name="SBT: com.badlogicgames.gdx:gdx-freetype:1.9.3" level="project" />
+    <orderEntry type="library" name="SBT: com.badlogicgames.gdx:gdx-freetype-platform:1.9.3" level="project" />
     <orderEntry type="library" name="scala-sdk-2.11.7" level="application" />
   </component>
 </module>

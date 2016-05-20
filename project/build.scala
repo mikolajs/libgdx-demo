@@ -18,7 +18,7 @@ object Settings {
     libraryDependencies ++= Seq(
       "com.badlogicgames.gdx" % "gdx" % libgdxVersion.value,
       "com.badlogicgames.gdx" % "gdx-freetype" % libgdxVersion.value,
-      "com.badlogicgames.gdx" % "gdx-freetype-platform" % libgdxVersion.value
+      "com.badlogicgames.gdx" % "gdx-freetype-platform" % libgdxVersion.value classifier( "natives-desktop")
     ),
     javacOptions ++= Seq(
       "-Xlint",
@@ -45,7 +45,7 @@ object Settings {
 
   lazy val desktop = core ++ Seq(
     libraryDependencies ++= Seq(
-      "net.sf.proguard" % "proguard-base" % "4.11" % "provided",
+      "net.sf.proguard" % "proguard-base" % "5.2.1" % "provided",
       "com.badlogicgames.gdx" % "gdx-backend-lwjgl" % libgdxVersion.value,
       "com.badlogicgames.gdx" % "gdx-platform" % libgdxVersion.value classifier "natives-desktop"
     ),
