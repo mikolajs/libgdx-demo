@@ -3,19 +3,18 @@ package pl.edu.osp
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter
 import com.badlogic.gdx.{Gdx, Game}
-import com.badlogic.gdx.graphics.g2d.{BitmapFont, SpriteBatch}
+import com.badlogic.gdx.graphics.g2d.{GlyphLayout, BitmapFont, SpriteBatch}
 import com.badlogic.gdx.graphics.{Texture, GL20, Color}
 
 class Libgdxdemo extends Game {
   private var batch:SpriteBatch = null
   private var texture:Texture = null
-
-  var posX = 0
-  var posY = 0
-  var claps = 0
+  private var layout:GlyphLayout = null
+  private var font:BitmapFont = null
+  var posY = -400
+  var scale = 1f
   val napisy = Array("LIBGDX-DEMO", "LibGDX nie jest", "silnikiem gier.", "Jest zbiorem narzedzi.",
     "Pozwala tworzyc gry na:", "Windows, Linux,", "iOS, Andoirda i HTML").reverse
-  private var fonts:Array[BitmapFont] = new Array(napisy.length)
   override def create(): Unit = {
     batch = new SpriteBatch()
     texture = new Texture(Gdx.files.internal("data/galaxy.jpg"))
@@ -25,24 +24,38 @@ class Libgdxdemo extends Game {
     parameter.borderColor = Color.BLACK
     parameter.borderWidth = 3
     parameter.color = Color.YELLOW
-    for(i <- 0 until napisy.length) fonts(i) = generator.generateFont(parameter)
+    font = generator.generateFont(parameter)
     generator.dispose()
+
+    layout = new GlyphLayout()
   }
 
   override def render():Unit = {
     Gdx.gl.glClearColor(1, 1, 1, 1)
     Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT)
-   // posY += 1
+    posY += 1
     batch.begin()
     batch.draw(texture, 0, 0)
-    for(i <- 0 until napisy.length) {
-      fonts(i).draw(batch, napisy(i), 0, 100 + i*100)
+    if(posY % 80 == 0) {
+      scale *=0.99f
+      println("SCALE: " + font.getScaleX)
     }
+    for(i <- 0 until napisy.length) {
+      font.getData.setScale(scala.math.pow(scale, i.toDouble).toFloat)
+      layout.setText(font,  napisy(i))
+
+      //println(s"+++++++++ $i size of text ${napisy(i)} is:  ${layout.width}"  )
+      font.draw(batch, napisy(i), (Gdx.graphics.getWidth - layout.width) / 2,
+          posY + layout.height + i*layout.height * 10.0f)
+
+    }
+
+
     batch.end()
   }
 
   override def dispose():Unit = {
-    for(i <- 0 until fonts.length) fonts(i).dispose()
+    font.dispose()
     batch.dispose()
     texture.dispose()
   }
