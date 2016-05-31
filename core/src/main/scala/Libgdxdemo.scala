@@ -11,7 +11,7 @@ class Libgdxdemo extends Game {
   private var texture:Texture = null
   private var layout:GlyphLayout = null
   private var font:BitmapFont = null
-  var posY = -400
+  var posY = -300f
   var scale = 1f
   val napisy = Array("LIBGDX-DEMO", "LibGDX nie jest", "silnikiem gier.", "Jest zbiorem narzedzi.",
     "Pozwala tworzyc gry na:", "Windows, Linux,", "iOS, Andoirda i HTML").reverse
@@ -36,9 +36,9 @@ class Libgdxdemo extends Game {
     posY += 1
     batch.begin()
     batch.draw(texture, 0, 0)
-    if(posY % 80 == 0) {
-      scale *=0.99f
-      println("SCALE: " + font.getScaleX)
+    if(posY % 2 == 0) {
+      scale *=0.999f
+      //println("SCALE: " + font.getScaleX)
     }
     for(i <- 0 until napisy.length) {
       font.getData.setScale(scala.math.pow(scale, i.toDouble).toFloat)
@@ -46,7 +46,7 @@ class Libgdxdemo extends Game {
 
       //println(s"+++++++++ $i size of text ${napisy(i)} is:  ${layout.width}"  )
       font.draw(batch, napisy(i), (Gdx.graphics.getWidth - layout.width) / 2,
-          posY + layout.height + i*layout.height * 10.0f)
+          posY + layout.height + i*layout.height * 2.0f)
 
     }
 
