@@ -11,10 +11,15 @@ class Libgdxdemo extends Game {
   private var texture:Texture = null
   private var layout:GlyphLayout = null
   private var font:BitmapFont = null
-  var posY = -300f
   var scale = 1f
   val napisy = Array("LIBGDX-DEMO", "LibGDX nie jest", "silnikiem gier.", "Jest zbiorem narzedzi.",
     "Pozwala tworzyc gry na:", "Windows, Linux,", "iOS, Andoirda i HTML").reverse
+  val positions = new Array[Int](napisy.length)
+  for(i <- 0 until napisy.length) {
+    positions(i) = -110 * i
+  }
+
+
   override def create(): Unit = {
     batch = new SpriteBatch()
     texture = new Texture(Gdx.files.internal("data/galaxy.jpg"))
@@ -33,21 +38,23 @@ class Libgdxdemo extends Game {
   override def render():Unit = {
     Gdx.gl.glClearColor(1, 1, 1, 1)
     Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT)
-    posY += 1
     batch.begin()
     batch.draw(texture, 0, 0)
-    if(posY % 2 == 0) {
-      scale *=0.999f
-      //println("SCALE: " + font.getScaleX)
-    }
     for(i <- 0 until napisy.length) {
-      font.getData.setScale(scala.math.pow(scale, i.toDouble).toFloat)
-      layout.setText(font,  napisy(i))
+      val pos = positions(i)
+      if(pos >=  0 && pos <= 960) {
+        val Y = (pos / 1.414213562).toFloat
+        val mL = pos
+        val mR = marginR(Y)
+        font.getData.setScale(
+          1.0f - (mR.toFloat / (Gdx.graphics.getWidth - mR).toFloat)
+        )
+        print(s" $i scala: ${1.0f - (mR.toFloat / (Gdx.graphics.getWidth - mR).toFloat)} \t" )
 
-      //println(s"+++++++++ $i size of text ${napisy(i)} is:  ${layout.width}"  )
-      font.draw(batch, napisy(i), (Gdx.graphics.getWidth - layout.width) / 2,
-          posY + layout.height + i*layout.height * 2.0f)
-
+        layout.setText(font,  napisy(i))
+        font.draw(batch, napisy(i), (Gdx.graphics.getWidth + mL - (layout.width + mR )) / 2, Y)
+      }
+      positions(i) += 1
     }
 
 
@@ -59,4 +66,7 @@ class Libgdxdemo extends Game {
     batch.dispose()
     texture.dispose()
   }
+
+  private def marginR(y: Float):Int = (180.0f - 0.257142857f*y).toInt
+
 }
