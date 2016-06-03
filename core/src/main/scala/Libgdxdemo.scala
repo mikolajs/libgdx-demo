@@ -13,7 +13,7 @@ class Libgdxdemo extends Game {
   private var font:BitmapFont = null
   var scale = 1f
   val napisy = Array("LIBGDX-DEMO", "LibGDX nie jest", "silnikiem gier.", "Jest zbiorem narzedzi.",
-    "Pozwala tworzyc gry na:", "Windows, Linux,", "iOS, Andoirda i HTML").reverse
+    "Pozwala tworzyc gry na:", "Windows, Linux,", "iOS, Andoirda i HTML")
   val positions = new Array[Int](napisy.length)
   for(i <- 0 until napisy.length) {
     positions(i) = -110 * i
@@ -47,10 +47,8 @@ class Libgdxdemo extends Game {
         val mL = pos
         val mR = marginR(Y)
         font.getData.setScale(
-          1.0f - (mR.toFloat / (Gdx.graphics.getWidth - mR).toFloat)
+          (Gdx.graphics.getWidth - mL - mR).toFloat / (Gdx.graphics.getWidth - 180).toFloat
         )
-        print(s" $i scala: ${1.0f - (mR.toFloat / (Gdx.graphics.getWidth - mR).toFloat)} \t" )
-
         layout.setText(font,  napisy(i))
         font.draw(batch, napisy(i), (Gdx.graphics.getWidth + mL - (layout.width + mR )) / 2, Y)
       }
