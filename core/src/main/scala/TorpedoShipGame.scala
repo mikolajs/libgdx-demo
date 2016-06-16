@@ -2,13 +2,15 @@ package pl.edu.osp
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
-import com.badlogic.gdx.graphics.g2d.Batch
+import com.badlogic.gdx.graphics.g2d.{SpriteBatch, Batch}
 
 class TorpedoShipGame {
-  private val texture:Texture = new Texture(Gdx.files.internal("data/river.png"))
+  private val sea: Texture = new Texture(Gdx.files.internal("data/sea.png"))
+  private val ship = new Ship
 
-
-  def render(batch: Batch): Unit = {
-    batch.draw(texture, 0, 0)
+  def render(batch: SpriteBatch): Unit = {
+    batch.draw(sea, 0, 0)
+    ship.render(batch)
+    ship.drawInfo(batch)
   }
 }

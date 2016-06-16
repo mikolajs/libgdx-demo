@@ -1,7 +1,7 @@
 package pl.edu.osp
 
 
-import com.badlogic.gdx.{Gdx, Game}
+import com.badlogic.gdx.{Input, Gdx, Game}
 import com.badlogic.gdx.graphics.g2d.{SpriteBatch}
 import com.badlogic.gdx.graphics.{GL20}
 
@@ -22,7 +22,11 @@ class Libgdxdemo extends Game {
     Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT)
     batch.begin()
     state match {
-      case 0 => {subtitles.render(batch); state = if(subtitles.end_?) 1 else 0}
+      case 0 => {
+        subtitles.render(batch);
+        state = if(subtitles.end_?) 1 else 0
+        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))  state = 1
+      }
       case _ => torpedoShip.render(batch)
     }
     batch.end()
@@ -32,7 +36,5 @@ class Libgdxdemo extends Game {
     batch.dispose()
     subtitles.dispose()
   }
-
-  private def marginR(y: Float):Int = (180.0f - 0.257142857f*y).toInt
 
 }
