@@ -34,7 +34,8 @@ class Ship {
     val gunCenter = Center(shipCenter.x, shipCenter.y + 19f )
     val torpCenter = Center(shipCenter.x, shipCenter.y - 20f )
     batch.draw(hullTex, shipCenter.x - hullTex.getWidth/2,  shipCenter.y - hullTex.getHeight/2)
-    batch.draw(gunTex, gunCenter.x - gunTex.getWidth/2,  gunCenter.y - gunTex.getHeight/2,  )
+    batch.draw(gunTex, gunCenter.x - gunTex.getWidth/2,  gunCenter.y - gunTex.getHeight/2) //,
+     // gunCenter.x, gunCenter.y, gunTex.getWidth, gunTex.getHeight, 1f, 1f, 90f)
     batch.draw(torpTex, torpCenter.x - torpTex.getWidth/2,  torpCenter.y - torpTex.getHeight/2)
     drawInfo(batch)
     batch.end()
